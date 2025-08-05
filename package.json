@@ -10,14 +10,17 @@
   "dependencies": {
     "@arcjet/inspect": "^1.0.0-beta.9",
     "@arcjet/node": "^1.0.0-beta.9",
+    "@upstash/workflow": "^0.2.16",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "~1.4.4",
+    "dayjs": "^1.11.13",
     "debug": "~2.6.9",
     "dotenv": "^17.2.1",
     "express": "~4.16.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.5",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemailer": "^7.0.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
