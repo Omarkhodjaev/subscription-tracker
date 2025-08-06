@@ -38,6 +38,7 @@ export const signUp = async (req, res, next) => {
 
     await session.commitTransaction();
     session.endSession();
+
     res.status(201).json({
       success: true,
       message: "User created successfully",
@@ -77,6 +78,12 @@ export const signIn = async (req, res, next) => {
       expiresIn: JWT_EXPIRES_IN,
     });
 
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     res.status(200).json({
       success: true,
       message: "User signed in successfully",
@@ -89,4 +96,19 @@ export const signIn = async (req, res, next) => {
     next(error);
   }
 };
-export const signOut = async (req, res, next) => {};
+
+export const signOut = async (req, res, next) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "User signed out successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
