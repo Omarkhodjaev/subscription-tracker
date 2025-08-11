@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select("-password");
 
     res.status(200).json({
       success: true,
@@ -29,7 +29,7 @@ export const getUser = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "User retrieved successfully",
-      data: user,
+      data: { user: user },
     });
   } catch (error) {
     next(error);
@@ -68,11 +68,48 @@ export const updateUser = async (req, res, next) => {
     await session.commitTransaction();
     session.endSession();
 
-    res.status(200).json({
+    res.json({
       success: true,
       message: "User updated successfully",
       data: {
         user: newUser[0],
+      },
+    });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    next(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const error = new Error("Invalid user ID format");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      const error = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.json({
+      success: true,
+      message: "User deleted successfully",
+      data: {
+        user: deletedUser,
       },
     });
   } catch (error) {
