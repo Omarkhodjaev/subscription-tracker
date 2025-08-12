@@ -124,19 +124,23 @@ npx @upstash/qstash-cli dev
 
 ### Foydalanuvchi
 
-- `GET /api/v1/users/profile` - Profil ma'lumotlari
-- `PUT /api/v1/users/profile` - Profil yangilash
-- `PUT /api/v1/users/password` - Parol o'zgartirish
+- `GET /api/v1/users` - Barcha foydalanuvchilar
+- `GET /api/v1/users/:id` - Bitta foydalanuvchi ma'lumotlari
+- `PUT /api/v1/users/:id` - Foydalanuvchi ma'lumotlarini yangilash
+- `DELETE /api/v1/users/:id` - Foydalanuvchi o'chirish
 
 ### Obunalar
 
 - `GET /api/v1/subscriptions` - Barcha obunalarni ko'rish
-- `POST /api/v1/subscriptions` - Yangi obuna qo'shish
+- `GET /api/v1/subscriptions/upcoming-renewals` - Kelgusi to'lovlar ro'yxati
 - `GET /api/v1/subscriptions/:id` - Bitta obuna ma'lumotlari
+- `POST /api/v1/subscriptions` - Yangi obuna qo'shish
 - `PUT /api/v1/subscriptions/:id` - Obuna yangilash
 - `DELETE /api/v1/subscriptions/:id` - Obuna o'chirish
+- `GET /api/v1/subscriptions/user/:id` - Foydalanuvchining barcha obunalari
+- `PUT /api/v1/subscriptions/:id/cancel` - Obunani bekor qilish
 
-### Workflow
+### Workflow (Private)
 
 - `POST /api/v1/workflows` - Yangi workflow yaratish
 - `GET /api/v1/workflows` - Workflow'larni ko'rish
