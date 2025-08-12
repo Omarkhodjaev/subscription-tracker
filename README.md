@@ -63,6 +63,7 @@
 - **Xavfsizlik**: Arcjet middleware
 - **Workflow**: Upstash Workflow
 - **Email**: Nodemailer
+- **API Documentation**: Swagger UI, swagger-jsdoc
 
 ## O'rnatish va ishga tushirish
 
@@ -113,6 +114,28 @@ Agar workflow funksiyalarini test qilmoqchi bo'lsangiz:
 ```bash
 npx @upstash/qstash-cli dev
 ```
+
+## API Documentation
+
+### 📚 Swagger UI
+Loyiha uchun to'liq API dokumentatsiyasi Swagger UI orqali mavjud:
+
+```
+http://localhost:5500/api-docs
+```
+
+**Swagger UI da quyidagilar mavjud:**
+- **Barcha endpoint'lar** - to'liq API yo'llari ro'yxati
+- **Request/Response schemalar** - har bir endpoint uchun kirish va chiqish ma'lumotlari
+- **Interaktiv test** - to'g'ridan-to'g'ri brauzerda API'ni test qilish
+- **Authentication** - JWT token bilan himoyalangan endpoint'larni test qilish
+- **Model schemalar** - User va Subscription model'larining to'liq tavsifi
+
+### 🔑 API'dan foydalanish
+1. Swagger UI ga kiring: `http://localhost:5500/api-docs`
+2. Authentication bo'limidan `/api/v1/auth/sign-up` yoki `/api/v1/auth/sign-in` orqali token oling
+3. "Authorize" tugmasini bosing va JWT tokenni kiriting
+4. Himoyalangan endpoint'larni test qiling
 
 ## API Endpoints
 
