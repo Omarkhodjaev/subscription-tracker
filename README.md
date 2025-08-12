@@ -32,7 +32,7 @@
 - Mavjud obunalarni ko'rish
 - Obuna ma'lumotlarini tahrirlash
 - Obunani o'chirish
-- Obuna holatini boshqarish (faol, muddati tugagan, bekor qilingan)
+- Obuna holatini boshqarish (active, expired, cancelled)
 
 ### 📊 Obuna kategoriyalari
 
